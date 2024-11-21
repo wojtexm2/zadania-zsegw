@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="pl">
+	<head>
+		<meta charset="UTF-8">
+		
+		
+		<title>Q&A</title>
+		<style>
+			.code {
+				color: white;
+				background-color:  #2e4053;
+				padding: 8px;
+			}
+			table, th, td {
+				border: 1px solid black;
+				border-collapse: collapse;
+				text-align: center;
+				padding: 8px;
+			}
+		</style>
+	</head>
+	<body>
+		<h1>Materiały pomocnicze</h1>
+		<ol class = 'listaTematow'>
+		<li>
+			<h2>Specyfikacja aplikacji do połączeń z bazą danych i usługi pocztowej</h2>
+			<b>Wymagania do połączenia z bazą danych:</b>
+			<ul>
+				<li>Zainstalowany system nodejs</li>
+				<li>Utworzona baza danych mysql, hostowana na lokalnym/publicznym serwerze.</li>
+				
+			</ul>
+			<br><b>Wymagania do zaimplementowania usługi mailowej (w zależności od metody):</b>
+			<ul>
+				<li>Nodemailer:
+					<ul>
+						<li>Instalacja: 'npm install nodemailer'</li>
+						<li>Wersja Node.js >= v6.0.0</li>
+						<li>Wymaga własnego adresu mailowego wraz z hasłem</li>
+					</ul>
+				</li>
+				<li>Resend:
+					<ul>
+						<li>Instalacja: 'npm install resend'</li>
+						<li>Darmowe/płatne konto na <a href='https://resend.com'>resend.com</a>.</li>
+						<li>Każde źródło zawiodło w podaniu obsługiwanej wersji node.js, więc klient musi się modlić.</li>
+					</ul>
+				</li>
+				<li>Sendgrid:
+					<ul>
+						<li>Instalacja: 'npm install --save @sendgrid/mail'</li>
+						<li>Wesja Node.js >= v6.0.0</li>
+						<li>Darmowe/płatne konto na <a href='https://sendgrid.com'>sendgrid.com</a>.</li>
+					</ul>
+				</li>
+			</ul>
+		</li>
+		<li>
+			<h2>Dostępne metody do stworzenia systemu pocztowego</h2>
+			<ol>
+				<li>
+					<h3>Nodemailer</h3>
+					<p>Nodemailer jest prostą i darmową metodą na wysyłanie maili elektronicznych.</p>
+					<b>Import biblioteki: </b><p class="code">var nodemailer = require('nodemailer');</p>
+					<p>
+						<b>Definiujemy maila z którego chcemy wysłać wiadomość:</b>
+						<p class="code">var transporter = nodemailer.createTransport({ <br>
+								&emsp; service: 'gmail',<br>
+								&emsp; auth: {<br>
+								&emsp;&emsp;	user: 'mail@gmail.com',<br>
+								&emsp;&emsp;	pass: 'password'<br>
+							&emsp;	}<br>
+							});<br>
+						</p>
+					</p>
+					<b>Definiujemy odbiorcę i zawartość maila:</b>
+					<p class="code">
+					var mailOptions = {<br>
+						&emsp;from: 'wysylający@gmail.com',<br>
+						&emsp;to: 'odbiorca@gmail.com',<br>
+						&emsp;subject: 'Przykładowy temat',<br>
+						&emsp;text: 'Zawartość'<br>
+					};
+					</p>
+					<b>Wysyłamy utworzoną wiadomość</b>
+					<p class="code">
+						transporter.sendMail(mailOptions, function(error, info){<br>
+						&emsp;	if (error) {<br>
+						&emsp;&emsp;&emsp; console.log(error);<br>
+						&emsp;	} else {<br>
+						&emsp;&emsp;&emsp; console.log('Email sent: ' + info.response);<br>
+						&emsp;	}<br>
+						}); <br>
+					</p>
+				</li>
+				<li>
+					<h3>Resend</h3>
+					<p>Resend jest profesjonalną usługą mailową udostępniającą darmowe API do 3000 maili miesięcznie. Za miesięczną opłatą limit może być zmieniony.</p>
+					<b>Import biblioteki: </b><p class='code'>import { Resend } from 'resend';<br>const resend = new Resend(klucz_do_api);</p>
+					<p>
+						<b>Wysyłanie maila</b>
+						<p class='code'>
+							await resend.emails.send({<br>
+							  &emsp; from: twoj_mail_resend,<br>
+							  &emsp; to: 'mail@gmail.com',<br>
+							  &emsp; replyTo: 'mail@gmail.com',<br>
+							  &emsp; subject: 'Temat maila',<br>
+							  &emsp; text: 'Zawartość maila',<br>
+							});
+						</p>
+					</p>
+				</li>
+				<li>
+					<h3>Sendgrid</h3>
+					<p>Sendgrid jest popularnym wyborem wśród developerów. Usługa daje dostęp do darmowego API umożliwiającego wysyłanie do 100 maili dziennie. Za płatną subskrypcją można ten limit zwiększyć.</p>
+					<b>Import biblioteki: </b><p class='code'>const sgMail = require('@sendgrid/mail')<br>sgMail.setApiKey(process.env.SENDGRID_API_KEY)</p>
+					<p>Utworzenie wiadomości</p>
+					<p class='code'>
+						const msg = {
+						  &emsp;to: 'odbiorca@gmail.com',<br>
+						  &emsp;from: twoj_mail_sendgrid,<br>
+						  &emsp;subject: 'Tytół wiadomości',<br>
+						  &emsp;text: 'Zawartość wiadomości',<br>
+						  &emsp;html: 'Zawartość w formacie html',<br>
+						}
+					</p>
+					<p>Wysłanie wiadomości</p>
+					<p class='code'>
+					sgMail.send(msg).then((response) => {<br>
+					&emsp;console.log(response[0].statusCode)<br>
+					&emsp;console.log(response[0].headers)<br>
+					}).catch((error) => {<br>
+					&emsp;	console.error(error)<br>
+					})
+					</p>
+				</li>
+			</ol>
+		</li>
+		<li>
+			<h2>Porównanie metod łączenia z pocztą elektroniczną</h2>
+			<table>
+				<tr>
+					<th></th><th>Nodemailer</th><th>Resend</th><th>Sendgrid</th>
+				</tr>
+				<tr>
+					<th>Werjsa Node.js</th><td>>= v6.0.0</td><td>-</td><td>>= v6.0.0</td>
+				</tr>
+				<tr>
+					<th>Cena</th><td>darmowy</td><td>0-1000$ miesięcznie</td><td>0-95$ miesięcznie</td>
+				</tr>
+				<tr>
+					<th>Limit maili</th><td>bez limitu</td><td>od 100 maili na dzień do 100000 maili miesięcznie</td><td>od 100 maili na dzień do więcej niż 100000 maili miesięcznie</td>
+				</tr>
+				<tr>
+					<th>Ilość domen</th><td>X</td><td>1-1000</td><td>1-3000</td>
+				</tr>
+				<tr>
+					<th>IPs</th><td>X</td><td>✓*</td><td>✓*</td>
+				</tr>
+				<tr>
+					<th>Template dla mailów</th><td>✓</td><td>✓</td><td>✓</td>
+				</tr>
+				<tr>
+					<th>Wiele użytkowników</th><td>X (trzeba było by taki stworzyć taki system samemu)</td><td>X</td><td>✓*</td>
+				</tr>
+			</table>
+			<p>*Funkcja dostępna tylko dla płatnego planu</p>
+		</li>
+		</ol>
+	</body>
+</html>
