@@ -7,7 +7,11 @@ from PyQt5.QtWidgets import (
 )
 from PyQt5.QtGui import QStandardItemModel, QStandardItem, QPixmap, QIcon
 from PyQt5.QtCore import QSize, QMimeData, QUrl
-import pyperclip
+
+SYSTEM = platform.system()
+
+if SYSTEM == 'Windows':
+    import pyperclip
 
 class DnDList(QListView):
     def __init__(self, parent=None):
@@ -103,7 +107,7 @@ class Main(QMainWindow):
             msgbox.exec_()
             return
         
-        with open(self.savepath+"\\lista.txt", "w") as file:
+        with open(os.path.join(self.savepath, "lista.txt"), 'w', encoding='UTF-8') as file:
             for row in range(self.listmodel.rowCount()):
                 item = self.listmodel.item(row)
                 file.write(item.text()+'\n')
@@ -133,13 +137,14 @@ class Main(QMainWindow):
         path = self.listmodel.itemFromIndex(indexes[0]).text()
 
        #Dla ciekawych, Windows nie lubi pythonowych ścieżek. 
-        folderpath = os.path.dirname(path).replace('/', '\\')
+        folderpath = os.path.dirname(path)
 
         #Pisząc to nie pomyślałem że PyQt5 może obsługiwać takie rzeczy natywnie, ale już nie będę niczego zmieniał, bo przynajmniej jest oryginalnie.
-        match platform.system():
+        match SYSTEM:
             case "Linux":
                 subprocess.run(["xdg-open", folderpath])
             case "Windows":
+                folderpath = folderpath.replace('/', '\\')
                 subprocess.run(["explorer", folderpath])
 
 app = QApplication(sys.argv)
