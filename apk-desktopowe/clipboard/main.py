@@ -1,17 +1,12 @@
-import sys, os, subprocess, platform
+import sys, os
 from PyQt5.QtWidgets import (
     QApplication, QMainWindow, QWidget, QFileDialog,
     QVBoxLayout, QHBoxLayout,
     QPushButton, QListView,
     QMessageBox
 )
-from PyQt5.QtGui import QStandardItemModel, QStandardItem, QPixmap, QIcon
+from PyQt5.QtGui import QStandardItemModel, QStandardItem, QPixmap, QIcon, QDesktopServices
 from PyQt5.QtCore import QSize, QMimeData, QUrl
-
-SYSTEM = platform.system()
-
-if SYSTEM == 'Windows':
-    import pyperclip
 
 class DnDList(QListView):
     def __init__(self, parent=None):
@@ -136,16 +131,7 @@ class Main(QMainWindow):
         
         path = self.listmodel.itemFromIndex(indexes[0]).text()
 
-       #Dla ciekawych, Windows nie lubi pythonowych ścieżek. 
-        folderpath = os.path.dirname(path)
-
-        #Pisząc to nie pomyślałem że PyQt5 może obsługiwać takie rzeczy natywnie, ale już nie będę niczego zmieniał, bo przynajmniej jest oryginalnie.
-        match SYSTEM:
-            case "Linux":
-                subprocess.run(["xdg-open", folderpath])
-            case "Windows":
-                folderpath = folderpath.replace('/', '\\')
-                subprocess.run(["explorer", folderpath])
+        QDesktopServices.openUrl(QUrl.fromLocalFile((os.path.dirname(path))))
 
 app = QApplication(sys.argv)
 window = Main()
