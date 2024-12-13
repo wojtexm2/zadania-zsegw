@@ -1,0 +1,4 @@
+AuthType Basic
+AuthName "HALT!"
+AuthUserFile /CMS/zadania_htaccess/ograniczanie_dostępu/.htpasswd
+Require valid-user
