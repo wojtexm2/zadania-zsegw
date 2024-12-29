@@ -1,0 +1,85 @@
+* {
+	font-family: garamond;
+}
+
+header {
+	background-color: tomato;
+	color: white;
+	text-align: center;
+	width: 80%;
+	height: 80px;
+}
+
+main {
+	float: left;
+	width: 80%;
+	height: 600px;
+}
+
+aside {
+	background-color: coral;
+	width: 20%;
+	height: 680px;
+	float: right;
+}
+
+footer {
+	background-color: tomato;
+	color: white;
+	text-align: center;
+	clear: both;
+}
+
+img {
+	border-radius: 50%;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+#chat {
+	border: 1px solid tomato;
+	margin: 15px;
+	height: 470px;
+	overflow: scroll;
+}
+
+#jonata, #krzysiek {
+	border-radious: 5px;
+	width: 90%;
+	height: 70px;
+	margin: 2%;
+	padding: 3px;
+}
+
+#jonata {
+	background-color: #EEE;
+}
+#jonata img {
+	float: left;
+}
+
+#krzysiek {
+	background-color: #CCC;
+	text-align: right;
+}
+#krzysiek img {
+	float: right;
+}
+
+button {
+	background-color: tomato;
+	border: 1px solid darkred;
+	padding: 5px;
+}
+
+input {
+	width: 500px;
+}
+
+
+
+
+
+
+
+

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pl">
+	<head>
+		<meta charset="UTF-8">
+		<title>Chat</title>
+
+		<link rel="stylesheet" href="styl.css">
+	</head>
+	<body>
+
+		<aside>
+			<h3>Chaty</h3>
+			<ul>
+				<li>Ogólny</li>
+				<li>Tematyczne
+					<ol>
+						<li>Turystyczny</li>
+						<li>Żeglarski</li>
+						<li>Filatelistyczny</li>
+						<li>Hodowla zwierzątek domowych</li>
+					</ol>
+				</li>
+			</ul>
+			<h3>Uczestnicy</h3>
+			<p>Jolanta Nowak</p>
+			<img src="Jolka.jpg" alt="Jolanta Nowak">
+			<p>Krzysztof Łukasiński</p>
+			<img src="Krzysiek.jpg" alt="Krzysztof Łukasiński">
+		</aside>
+		<header><h2>Chat</h2></header>
+
+		<main>
+			<div id="chat">
+				<div id="jonata">
+					<img src="Jolka.jpg" alt="Jolka">
+					<p>Cześć idziesz jutro do kina?</p>
+				</div>
+				<div id="krzysiek">
+					<img src="Krzysiek.jpg" alt="Krzysiek">
+					<p>Tak! A ty?<p>
+				</div>
+			</div>
+			<div>
+				<label>Wpisz wiadomość:</label><input type="text" id="messageinput">
+				<button onClick="respond()">Wyślij</button><br>
+				<button onClick="randomResponse()">Generuj losową odpowiedź</button>
+			</div>
+		</main>
+
+
+
+		<footer><h5>Chat wykonał: 000000000</h5></footer>
+
+		<script src="skrypt.js"></script>
+	</body>
+</html>
