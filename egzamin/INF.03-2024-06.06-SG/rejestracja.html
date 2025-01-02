@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pl">
+	<head>
+		<meta charset="UTF-8">
+		<title>Rejestracja</title>
+
+		<link rel="stylesheet" href="styl.css">
+	</head>
+	<body>
+		<header>
+			<h1>Formularz rejestracyjny konferencji <em>Nasze Kwiaty</em></h1>
+		</header>
+
+		<section>
+			<form action="javascript:void(0);">
+				<div id="blok1">
+					<h2>Dane osobowe</h2>
+					<input id="imie" type="text" placeholder="Wpisz imię..." required>
+					<input id="nazwisko" type="text" placeholder="Wpisz nazwisko" required>
+					<button onclick="przycisk1()">Następna karta</button>
+				</div>
+				<div id="blok2">
+				<h2>Dane kontaktowe</h2>
+					<input id="email" type="email" placeholder="Twój e-mail...">
+					<input id="telefon" type="tel" placeholder="Twój numer telefonu...">
+					<button onclick="przycisk2()">Następna karta</button>
+				</div>
+				<div id="blok3">
+				<h2>Hasło do logowania</h2>
+					<input id="haslo" type="password" placeholder="Podaj hasło">
+					<input id="haslo_powtorzone" type="password" placeholder="Powtórz hasło">
+					<button onclick="przycisk3()">Zatwierdź</button>
+				</div>
+			</form>
+		</section>
+
+		<footer>
+			<video controls>
+				<source src="motyl.mp4" type="video/mp4">
+				Przeglądarka nie obsługuje tego formatu
+			</video>
+		</footer>
+		<footer>
+			<h3>Plan konfernecji</h3>
+			<table>
+				<tr>
+					<td>9:00 - 12:00</td><td>Pielęgnacja roślin</td>
+				</tr>
+				<tr>
+					<td>13:00 - 15:00</td><td>Targi kwiatowe</td>
+				</tr>
+			</table>
+		</footer>
+		<footer>
+			<p><a href="https://kwiaty.pl">Internetowa kwiaciarnia</a></p>
+		</footer>
+		<footer>
+			<p>Formularz wykonał: 000000000</p>
+		</footer>
+
+		<script src="skrypt.js"></script>
+	</body>
+</html>
