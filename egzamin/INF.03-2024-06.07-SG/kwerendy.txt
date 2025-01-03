@@ -1,0 +1,7 @@
+UPDATE wagi SET dzien = CURDATE(), czas = CURTIME() WHERE lokalizacje_id IN (2, 3, 4);
+
+SELECT ulica from lokalizacje;
+
+INSERT INTO wagi (lokalizacje_id, waga, rejestracja, dzien, czas) VALUES (5, FLOOR(RAND()*(10)+1), "DW12345", CURDATE(), CURTIME());
+
+SELECT w.rejestracja, w.waga, w.dzien, w.czas, l.ulica FROM wagi w JOIN lokalizacje l ON l.id = w.lokalizacje_id WHERE waga > 5;
