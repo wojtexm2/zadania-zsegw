@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pl">
+	<head>
+		<meta charset="UTF-8">
+		<title>Sklep - rejestracja</title>
+
+		<link rel="stylesheet" href="styl.css">
+	</head>
+	<body>
+		<aside>
+			<img src="obraz.png" alt="promocje">
+			<h2>Sprawdź promocje</h2>
+			<table>
+				<tr><th>co?</th><th>ile taniej?</th></tr>
+				<tr><td>ubrania</td><td>15%</td></tr>
+				<tr><td>buty</td><td>25%</td></tr>
+
+			</table>
+		</aside>
+
+		<header><h1>Zarejestruj się w sklepie</h1></header>
+
+		<section id="main">
+			<button onclick="firstTab()">Klient</button>
+			<button onclick="secondTab()">Adres</button>
+			<button onclick="thirdTab()">Kontakt</button>
+
+			<div id="form1">
+				<p>Imię</p>
+				<input onfocusout="barProgress()" type="text" placeholder="Wpisz dane..." id="imie">
+				<p>Nazwisko</p>
+				<input onfocusout="barProgress()" type="text" id="nazwisko">
+				<p>Data urodzenia</p>
+				<input onfocusout="barProgress()" type="date" id="urodzenie">
+			</div>
+			<div id="form2">
+				<p>Ulica</p>
+				<input onfocusout="barProgress()" type="text" id="ulica">
+				<p>Numer</p>
+				<input onfocusout="barProgress()" type="number" id="numer">
+				<p>Miasto</p>
+				<input onfocusout="barProgress()" type="text" id="miasto">
+				
+			</div>
+			<div id="form3">
+				<p>Numer komórkowy</p>
+				<input onfocusout="barProgress()" type="tel" id="telefon"><br>
+				<input onfocusout="barProgress()" type="checkbox" id="rodo"><label for="rodo">Akceptuję RODO</label><br>
+				<button onclick="formPost()">Zatwierdź<br>dane</button>
+			</div>
+		</section>
+
+		<section id="progressbar">
+			<div id="progressbarinside"></div>
+		</section>
+
+		<footer><h4>Rejestrację do sklepu wykonał: 000000000</h4></footer>
+
+		<script src="skrypt.js"></script>
+	</body>
+</html>

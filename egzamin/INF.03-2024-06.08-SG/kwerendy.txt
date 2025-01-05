@@ -1,0 +1,7 @@
+SELECT imie, nazwisko FROM osoby WHERE dataUr >= "2000.1.1";
+
+SELECT DISTINCT miasto FROM adresy ORDER BY miasto ASC;
+
+SELECT o.imie, o.nazwisko, t.numer FROM osoby o JOIN telefony t ON o.id = t.Osoby_id;
+
+ALTER TABLE adresy ADD COLUMN numerMieszkania INT AFTER numer;
