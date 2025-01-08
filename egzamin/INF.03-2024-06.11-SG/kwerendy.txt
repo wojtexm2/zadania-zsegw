@@ -1,0 +1,7 @@
+SELECT imie, miot FROM swinki WHERE data_ur LIKE "%____-07-__";
+
+SELECT DISTINCT s.data_ur, s.miot, r.rasa FROM rasy r JOIN swinki s ON r.id = s.rasy_id WHERE r.id = 1;
+
+SELECT DISTINCT s.imie, s.cena, s.opis FROM swinki s WHERE s.rasy_id = 1;
+
+SELECT rasa FROM rasy;
